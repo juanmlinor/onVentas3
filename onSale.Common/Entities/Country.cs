@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,12 @@ namespace onSale.Common.Entities
         [Required]
         [Display(Name = "Country")]
         public string Name { get; set; }
+
+        public ICollection<Department> Departments { get; set; }
+
+        [DisplayName("Departments Number")]
+        public int DepartmentsNumber => Departments == null ? 0 : Departments.Count;
+
 
     }
 }
