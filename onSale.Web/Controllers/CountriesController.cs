@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using onSale.Common.Entities;
 using onSale.Web.Data;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace onSale.Web.Controllers
 {
@@ -193,8 +191,8 @@ namespace onSale.Web.Controllers
                     country.Departments.Add(department);
                     _context.Update(country);
                     await _context.SaveChangesAsync();
-                    
-                    return RedirectToAction($"{nameof(Details)}/{country.Id}");
+                    string ruta= "Details/"+ country.Id.ToString();
+                    return RedirectToAction(ruta);
                 }
                 catch (DbUpdateException dbUpdateException)
                 {
@@ -244,6 +242,7 @@ namespace onSale.Web.Controllers
                 {
                     _context.Update(department);
                     await _context.SaveChangesAsync();
+                   /* return RedirectToAction("Index", "Home", new { id = 2 });*/
                     return RedirectToAction($"{nameof(Details)}/{department.IdCountry}");
                 }
                 catch (DbUpdateException dbUpdateException)
